@@ -1,0 +1,83 @@
+<h1>template-driven-forms works!</h1>
+
+<form
+  [ngFormOptions]="{ updateOn: 'change' }"
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+>
+  <!-- Двустороннее связывание Вариант №1-->
+  <input type="text" name="name" [(ngModel)]="person.name" placeholder="Имя" />
+
+  <!-- Двустороннее связывание Вариант №2-->
+  <input
+    type="text"
+    name="lastName"
+    [ngModel]="person.lastName"
+    (ngModelChange)="onChange($event)"
+    placeholder="Фамилия"
+  />
+
+  <!-- Вложенность -->
+  <div ngModelGroup="adress">
+    <input
+      type="text"
+      name="street"
+      [(ngModel)]="person.address.street"
+      placeholder="Улица"
+    />
+
+    <!-- 
+        blur(когда мы вышли за пределы),
+        change(когда мы вводим),
+        submit(когда мы нажали на кнопку)     
+    -->
+    <input
+      type="text"
+      [(ngModel)]="person.address.building"
+      [ngModelOptions]="{ updateOn: 'submit', name: 'building' }"
+      placeholder="Дом"
+    />
+
+    <!-- 
+       Отдельный контрол без имени
+    -->
+    <input
+      type="text"
+      [(ngModel)]="hobby"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Хобби"
+    />
+    {{ hobby }}
+  </div>
+
+  <!-- Валидатор -->
+  <input
+    type="text"
+    required
+    name="login"
+    [(ngModel)]="person.login"
+    placeholder="login"
+    #login="ngModel"
+  />
+  @if(login.hasError('required') && login.touched){
+  <span>Заполните поле!</span>
+  }
+
+  <!-- Кастомный валидатор -->
+  <input
+    type="text"
+    name="stack"
+    [(ngModel)]="person.stack"
+    placeholder="stack"
+    #stack="ngModel"
+    noReact
+    required
+  />
+  @if(stack.hasError('noReact')){
+  <span>{{ stack.getError("noReact").message }}</span>
+  }
+
+  <button type="submit">submit</button>
+</form>
+
+<pre>{{ person | json }}</pre>
