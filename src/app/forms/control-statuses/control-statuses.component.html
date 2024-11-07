@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h4 class="h4 mb16">Control Statuses</h4>
+
+  <label class="tt-control-label mb16">
+    Имя
+    <input
+      [formControl]="form.controls.name"
+      class="tt-input"
+      type="text"
+      placeholder="Введите имя"
+    />
+    <small class="validation">Это поле обязательное!</small>
+  </label>
+
+  <label class="tt-control-label mb16">
+    Фамилия
+    <input
+        [formControl]="form.controls.surname"
+      class="tt-input"
+      type="text"
+      placeholder="Введите фамилию"
+    />
+  </label>
+  <button class="btn btn-shadow mt20" type="submit">Подтвердить</button>
+</form>

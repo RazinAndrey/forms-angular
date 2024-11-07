@@ -1,0 +1,33 @@
+:host {
+  display: grid;
+  place-content: center;
+  height: 100dvh;
+}
+
+form {
+  max-width: 600px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* всего 6 состояний для контрола */
+
+.tt-input.ng-invalid.ng-touched {
+    border: 2px solid tomato;
+}
+
+.validation {
+    display: none;
+}
+
+.tt-input.ng-invalid.ng-touched + .validation {
+    display: block;
+}
+
+.ng-submitted {
+    border: 10px solid aquamarine;
+}
