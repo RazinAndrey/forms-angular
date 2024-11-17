@@ -1,0 +1,19 @@
+<h1>control-value-accessor works!</h1>
+
+<form [formGroup]="form">
+  <app-tt-input
+    type="text"
+    placeholder="Введите логин"
+    formControlName="username"
+  >
+    Telegram username
+  </app-tt-input>
+
+  <app-tt-input
+    type="password"
+    placeholder="Введите пароль"
+    formControlName="password"
+  >
+    Password
+  </app-tt-input>
+</form>

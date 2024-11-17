@@ -1,0 +1,39 @@
+<h4 class="h6 mb16">reactive-forms-validators works!</h4>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label class="tt-control-label mb16">
+        Имя
+        <input type="text" class="tt-input" formControlName="name" placeholder="Имя">
+    </label>
+
+    @if(form.controls.name.touched && form.controls.name.hasError('nameValid')){
+        <p>{{form.controls.name.getError('nameValid')?.message}}</p>
+    }
+
+    <label class="tt-control-label mb16">
+        Фамилия
+        <input type="text" class="tt-input" formControlName="surname" placeholder="Фамилия">
+    </label>
+    
+    @if(form.controls.surname.touched && form.controls.surname.hasError('startsWith')){
+        <p>{{form.controls.surname.getError('startsWith')?.message}}</p>
+    }
+
+    <h4 class="h6 mb16">Период доставки</h4>
+   
+    <div class="two-columns" formGroupName="dateRange">
+        <label class="tt-control-label mb16">
+            От
+            <input type="date" class="tt-input" formControlName="from" placeholder="Логин">
+        </label>
+        <label class="tt-control-label mb16">
+            До
+            <input type="date" class="tt-input" formControlName="to" placeholder="Логин">
+        </label>
+    </div>
+
+    @if(form.controls.dateRange.touched && form.controls.dateRange.hasError('dateRange')){
+        <p>{{form.controls.dateRange.getError('dateRange')?.message}}</p>
+    }
+</form>
